@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorting Algorithm Visualizer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Sorting Algorithm Visualizer</h1>
+        <p class="subtitle">
+          Watch different sorting algorithms in action and understand how they
+          work
+        </p>
+      </header>
+
+      <div class="main-content">
+        <div class="controls">
+          <div class="control-group">
+            <h3>Algorithm Selection</h3>
+            <select id="algorithm-select">
+              <option value="bubble">Bubble Sort</option>
+              <option value="selection">Selection Sort</option>
+              <option value="insertion">Insertion Sort</option>
+              <option value="merge">Merge Sort</option>
+              <option value="quick">Quick Sort</option>
+              <option value="heap">Heap Sort</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <h3>Array Configuration</h3>
+            <div class="btn-group">
+              <button id="generate-array" class="primary">
+                Generate New Array
+              </button>
+              <button id="reverse-array">Reverse Array</button>
+            </div>
+
+            <div class="slider-container">
+              <label for="array-size">Array Size:</label>
+              <input
+                type="range"
+                id="array-size"
+                min="5"
+                max="100"
+                value="30"
+              />
+              <span id="size-value" class="slider-value">30</span>
+            </div>
+
+            <div class="slider-container">
+              <label for="sort-speed">Sort Speed:</label>
+              <input
+                type="range"
+                id="sort-speed"
+                min="1"
+                max="100"
+                value="50"
+              />
+              <span id="speed-value" class="slider-value">50</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <h3>Sorting Controls</h3>
+            <div class="btn-group">
+              <button id="start-sort" class="primary">Start Sorting</button>
+              <button id="pause-sort" class="secondary" disabled>Pause</button>
+              <button id="reset-sort" class="danger">Reset</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <h3>Array Elements</h3>
+            <div id="array-values" class="array-values-display">
+              <!-- Array values will be displayed here -->
+            </div>
+          </div>
+        </div>
+
+        <div class="visualization">
+          <div class="array-container" id="array-container">
+            <!-- Array bars will be generated here -->
+          </div>
+
+          <div class="stats">
+            <div class="stat-item">
+              <div class="stat-value" id="comparisons">0</div>
+              <div class="stat-label">Comparisons</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" id="swaps">0</div>
+              <div class="stat-label">Swaps</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" id="time">0 ms</div>
+              <div class="stat-label">Time</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="algorithm-info">
+        <h2 id="algorithm-name">Bubble Sort</h2>
+        <p id="algorithm-description">
+          Bubble Sort is a simple sorting algorithm that repeatedly steps
+          through the list, compares adjacent elements and swaps them if they
+          are in the wrong order.
+        </p>
+
+        <div class="info-content active" id="bubble-info">
+          <h3>Time Complexity</h3>
+          <table class="complexity-table">
+            <tr>
+              <th>Case</th>
+              <th>Time Complexity</th>
+            </tr>
+            <tr>
+              <td>Best</td>
+              <td>O(n)</td>
+            </tr>
+            <tr>
+              <td>Average</td>
+              <td>O(n²)</td>
+            </tr>
+            <tr>
+              <td>Worst</td>
+              <td>O(n²)</td>
+            </tr>
+          </table>
+
+          <h3>Space Complexity: O(1)</h3>
+
+          <h3>Pseudocode</h3>
+          <div class="pseudo-code">
+            procedure bubbleSort(A : list of sortable items) n = length(A)
+            repeat swapped = false for i = 1 to n-1 inclusive do if A[i-1] >
+            A[i] then swap(A[i-1], A[i]) swapped = true end if end for n = n - 1
+            until not swapped end procedure
+          </div>
+        </div>
+
+        <div class="info-content" id="selection-info">
+          <h3>Time Complexity</h3>
+          <table class="complexity-table">
+            <tr>
+              <th>Case</th>
+              <th>Time Complexity</th>
+            </tr>
+            <tr>
+              <td>Best</td>
+              <td>O(n²)</td>
+            </tr>
+            <tr>
+              <td>Average</td>
+              <td>O(n²)</td>
+            </tr>
+            <tr>
+              <td>Worst</td>
+              <td>O(n²)</td>
+            </tr>
+          </table>
+
+          <h3>Space Complexity: O(1)</h3>
+
+          <h3>Pseudocode</h3>
+          <div class="pseudo-code">
+            procedure selectionSort(A : list of sortable items) n = length(A)
+            for i = 0 to n-2 do minIndex = i for j = i+1 to n-1 do if A[j] <
+            A[minIndex] then minIndex = j end if end for if minIndex != i then
+            swap(A[i], A[minIndex]) end if end for end procedure
+          </div>
+        </div>
+
+        <div class="info-content" id="insertion-info">
+          <h3>Time Complexity</h3>
+          <table class="complexity-table">
+            <tr>
+              <th>Case</th>
+              <th>Time Complexity</th>
+            </tr>
+            <tr>
+              <td>Best</td>
+              <td>O(n)</td>
+            </tr>
+            <tr>
+              <td>Average</td>
+              <td>O(n²)</td>
+            </tr>
+            <tr>
+              <td>Worst</td>
+              <td>O(n²)</td>
+            </tr>
+          </table>
+
+          <h3>Space Complexity: O(1)</h3>
+
+          <h3>Pseudocode</h3>
+          <div class="pseudo-code">
+            procedure insertionSort(A : list of sortable items) n = length(A)
+            for i = 1 to n-1 do key = A[i] j = i - 1 while j >= 0 and A[j] > key
+            do A[j+1] = A[j] j = j - 1 end while A[j+1] = key end for end
+            procedure
+          </div>
+        </div>
+
+        <div class="info-content" id="merge-info">
+          <h3>Time Complexity</h3>
+          <table class="complexity-table">
+            <tr>
+              <th>Case</th>
+              <th>Time Complexity</th>
+            </tr>
+            <tr>
+              <td>Best</td>
+              <td>O(n log n)</td>
+            </tr>
+            <tr>
+              <td>Average</td>
+              <td>O(n log n)</td>
+            </tr>
+            <tr>
+              <td>Worst</td>
+              <td>O(n log n)</td>
+            </tr>
+          </table>
+
+          <h3>Space Complexity: O(n)</h3>
+
+          <h3>Pseudocode</h3>
+          <div class="pseudo-code">
+            procedure mergeSort(A : list of sortable items) if length(A) <= 1
+            then return A end if mid = length(A) / 2 left = mergeSort(A[0:mid])
+            right = mergeSort(A[mid:end]) return merge(left, right) end
+            procedure procedure merge(left, right) result = [] while left not
+            empty and right not empty do if first(left) <= first(right) then
+            append first(left) to result left = rest(left) else append
+            first(right) to result right = rest(right) end if end while append
+            remaining elements of left and right to result return result end
+            procedure
+          </div>
+        </div>
+
+        <div class="info-content" id="quick-info">
+          <h3>Time Complexity</h3>
+          <table class="complexity-table">
+            <tr>
+              <th>Case</th>
+              <th>Time Complexity</th>
+            </tr>
+            <tr>
+              <td>Best</td>
+              <td>O(n log n)</td>
+            </tr>
+            <tr>
+              <td>Average</td>
+              <td>O(n log n)</td>
+            </tr>
+            <tr>
+              <td>Worst</td>
+              <td>O(n²)</td>
+            </tr>
+          </table>
+
+          <h3>Space Complexity: O(log n)</h3>
+
+          <h3>Pseudocode</h3>
+          <div class="pseudo-code">
+            procedure quickSort(A, low, high) if low < high then pi =
+            partition(A, low, high) quickSort(A, low, pi - 1) quickSort(A, pi +
+            1, high) end if end procedure procedure partition(A, low, high)
+            pivot = A[high] i = low - 1 for j = low to high-1 do if A[j] < pivot
+            then i = i + 1 swap(A[i], A[j]) end if end for swap(A[i+1], A[high])
+            return i + 1 end procedure
+          </div>
+        </div>
+
+        <div class="info-content" id="heap-info">
+          <h3>Time Complexity</h3>
+          <table class="complexity-table">
+            <tr>
+              <th>Case</th>
+              <th>Time Complexity</th>
+            </tr>
+            <tr>
+              <td>Best</td>
+              <td>O(n log n)</td>
+            </tr>
+            <tr>
+              <td>Average</td>
+              <td>O(n log n)</td>
+            </tr>
+            <tr>
+              <td>Worst</td>
+              <td>O(n log n)</td>
+            </tr>
+          </table>
+
+          <h3>Space Complexity: O(1)</h3>
+
+          <h3>Pseudocode</h3>
+          <div class="pseudo-code">
+            procedure heapSort(A) n = length(A) // Build max heap for i = n/2 -
+            1 down to 0 do heapify(A, n, i) end for // Extract elements from
+            heap for i = n-1 down to 1 do swap(A[0], A[i]) heapify(A, i, 0) end
+            for end procedure procedure heapify(A, n, i) largest = i left = 2*i
+            + 1 right = 2*i + 2 if left < n and A[left] > A[largest] then
+            largest = left end if if right < n and A[right] > A[largest] then
+            largest = right end if if largest != i then swap(A[i], A[largest])
+            heapify(A, n, largest) end if end procedure
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          Sorting Algorithm Visualizer &copy; 2023 | Created for educational
+          purposes
+        </p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
